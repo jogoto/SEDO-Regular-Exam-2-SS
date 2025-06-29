@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         DOTNET_VERSION = '8.0.x'
-        DOTNET_PATH = '/home/sstanchev/.dotnet/dotnet'
+        DOTNET_PATH = '/opt/.dotnet/dotnet'
     }
     
     stages {
