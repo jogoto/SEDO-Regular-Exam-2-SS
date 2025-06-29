@@ -3,22 +3,13 @@ pipeline {
     
     environment {
         DOTNET_VERSION = '8.0.x'
+        DOTNET_PATH = '/home/sstanchev/.dotnet/dotnet'
     }
     
     stages {
         stage('Checkout') {
             steps {
                 checkout scm
-            }
-        }
-        
-        stage('Setup .NET') {
-            steps {
-                script {
-                    // Install .NET SDK if not already installed
-                    def dotnetHome = tool name: 'dotnet-sdk-8.0', type: 'hudson.plugins.dotnet.DotNetInstallation'
-                    env.PATH = "${dotnetHome}/bin:${env.PATH}"
-                }
             }
         }
         
