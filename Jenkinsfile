@@ -15,19 +15,19 @@ pipeline {
         
         stage('Restore Dependencies') {
             steps {
-                sh 'dotnet restore'
+                sh "${DOTNET_PATH} restore"
             }
         }
         
         stage('Build') {
             steps {
-                sh 'dotnet build --no-restore --configuration Release'
+                sh "${DOTNET_PATH} build --no-restore --configuration Release"
             }
         }
         
         stage('Test') {
             steps {
-                sh 'dotnet test --no-build --verbosity normal --configuration Release'
+                sh "${DOTNET_PATH} test --no-build --verbosity normal --configuration Release"
             }
         }
     }
