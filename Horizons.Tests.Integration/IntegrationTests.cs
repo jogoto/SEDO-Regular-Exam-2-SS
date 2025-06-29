@@ -25,12 +25,17 @@ namespace Horizons.IntegrationTests
                 .Options;
             _dbContext = new ApplicationDbContext(options);
 
+            // Seed terrain data
+            var terrain = new Terrain { Id = 1, Name = "Mountain" };
+            _dbContext.Terrains.Add(terrain);
+            _dbContext.SaveChanges();
+
             _controller = new DestinationController(new DestinationService(_dbContext));
 
             var mockUser = new ClaimsPrincipal(new ClaimsIdentity(new Claim[]
             {
                 new Claim(ClaimTypes.NameIdentifier, "testUserId"),
-            }));
+            }, "Test"));
 
             _controller.ControllerContext = new ControllerContext()
             {
